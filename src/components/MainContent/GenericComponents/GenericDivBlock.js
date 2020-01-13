@@ -44,31 +44,50 @@ const GenericDivBlock = props => {
               </div>
             </div>
           </div>
-          {/* <!-- Card Body --> */}
-          <div className="card-body">
-            <div className="chart-area">
-              <canvas id="myAreaChart"></canvas>
+
+          {/*   
+          col="col-xl-"
+          Heading=""
+          dropDownHeading=""
+          dropDownItems={["", "", ""]}
+          footerPills={["", "", ""]} 
+          
+          */}
+          {props.footerPills ? (
+            <div className="card-body">
+              <div className="chart-pie pt-4 pb-2">
+                <canvas id="myPieChart"></canvas>
+              </div>
+              <div className="mt-4 text-center small">
+                {props.footerPills.map((value, index) => {
+                  return (
+                    <span className="mr-2" key={index}>
+                      <i
+                        className={`fas fa-circle  ${
+                          index == 0
+                            ? "text-primary"
+                            : index == 1
+                            ? "text-success"
+                            : index == 2
+                            ? "text-info"
+                            : false
+                        }`}
+                      ></i>{" "}
+                      {value}
+                    </span>
+                  );
+                })}
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="card-body">
+              <div className="chart-area">
+                <canvas id="myAreaChart"></canvas>
+              </div>
+            </div>
+          )}
 
           {/*  */}
-
-          <div className="card-body">
-            <div className="chart-pie pt-4 pb-2">
-              <canvas id="myPieChart"></canvas>
-            </div>
-            <div className="mt-4 text-center small">
-              <span className="mr-2">
-                <i className="fas fa-circle text-primary"></i> Direct
-              </span>
-              <span className="mr-2">
-                <i className="fas fa-circle text-success"></i> Social
-              </span>
-              <span className="mr-2">
-                <i className="fas fa-circle text-info"></i> Referral
-              </span>
-            </div>
-          </div>
         </div>
       </div>
     </React.Fragment>
